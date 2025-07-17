@@ -15,6 +15,11 @@ body {
   z-index: 0; /* stacking context root */
 }
 
+@media (max-width: 768px) {
+  section h2 {
+    text-align: center;
+  }
+}
 /* ========== PARTICLES BACKGROUND ========== */
 #tsparticles {
   position: absolute;  /* scrolls with content */
