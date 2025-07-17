@@ -16,8 +16,17 @@ body {
 }
 
 @media (max-width: 768px) {
-  section {
+  body,
+  .hero-content,
+  .navbar-content,
+  .about-content,
+  .contact-form,
+  footer {
     text-align: center;
+  }
+
+  .contact-form button {
+    align-self: center;
   }
 }
 /* ========== PARTICLES BACKGROUND ========== */
