@@ -150,8 +150,12 @@ footer {
 }
 
 @media (max-width: 768px) {
-  .nav-links {
+  .navbar {
     display: none;
+  }
+
+  .nav-links {
+    display: none; /* optional, already in your code */
   }
 }
 
