@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Business Name</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- NAVIGATION BAR -->
+  <nav class="navbar">
+    <div class="navbar-bg"></div>
+    <div class="navbar-content">
+      <div class="container">
+        <div class="logo">Business Name</div>
+        <ul class="nav-links">
+          <li><a href="#about">What We Do</a></li>
+          <li><a href="#location">Where We Work</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HEADER SECTION -->
+  <header class="hero-header">
+    <div class="hero-content">
+      <h1>Empowering Digital Innovation</h1>
+      <p>Business Name provides smart, scalable tech solutions to help companies grow in a connected world.</p>
+      <a href="#contact" class="hero-button">Get Started</a>
+    </div>
+  </header>
+
+  <!-- ABOUT SECTION -->
+  <section id="about">
+    <h2>What We Do</h2>
+    <div class="about-content">
+      <img src="https://i.pravatar.cc/300?img=12" alt="CEO Portrait" class="ceo-photo" />
+      <p>
+        Business Name delivers strategic consulting, IT solutions, and project management services across multiple industries.
+        We empower clients with data-driven approaches, expert advisory, and scalable technology tailored for growth and resilience.
+      </p>
+    </div>
+  </section>
+
+  <!-- LOCATION SECTION -->
+  <section id="location">
+    <h2>Where We Work</h2>
+    <p>
+      Headquartered in Central London, we support clients globally with hybrid operations and on-site collaboration throughout Europe.
+    </p>
+    <div class="map-container">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d19811.637474752774!2d-0.1277588426894327!3d51.50735080326857!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48761b333f4bb8ef%3A0x9b87e6f84ccbf6c6!2sLondon!5e0!3m2!1sen!2suk!4v1721212982223!5m2!1sen!2suk"
+        allowfullscreen
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
+  </section>
+
+  <!-- CONTACT SECTION -->
+  <section id="contact">
+    <h2>Contact Us</h2>
+    <p>We'd love to hear from you. Fill in the form below and we'll get back to you shortly.</p>
+
+    <form class="contact-form" action="mailto:contact@businessname.com" method="POST" enctype="text/plain">
+      <div class="form-group">
+        <label for="name">Full Name</label>
+        <input type="text" id="name" name="Name" required>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" name="Email" required>
+      </div>
+
+      <div class="form-group">
+        <label for="message">Your Message</label>
+        <textarea id="message" name="Message" rows="5" required></textarea>
+      </div>
+
+      <button type="submit">Send Message</button>
+    </form>
+
+    <p><strong>Email:</strong> contact@businessname.com</p>
+    <p><strong>Phone:</strong> +44 20 7946 0999</p>
+    <p><strong>Office:</strong> 123 Business Road, London, UK</p>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>&copy; 2025 Business Name. All rights reserved.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

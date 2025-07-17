@@ -1,0 +1,363 @@
+/* ========== RESET ========== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #f4f7fa;
+  color: #222;
+  overflow-x: hidden;
+  position: relative;
+  z-index: 0;
+}
+
+/* ========== ABSTRACT BACKGROUND ========== */
+body::before, body::after {
+  content: '';
+  position: fixed;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  z-index: -1;
+  background: linear-gradient(135deg, #004080aa, #3399ff99);
+  animation: float 20s infinite alternate ease-in-out;
+}
+
+body::before {
+  top: -100px;
+  left: -150px;
+}
+
+body::after {
+  bottom: -100px;
+  right: -150px;
+  background: linear-gradient(135deg, #3399ffaa, #00408099);
+}
+
+@keyframes float {
+  from {
+    transform: translateY(0px) rotate(0deg);
+  }
+  to {
+    transform: translateY(30px) rotate(10deg);
+  }
+}
+
+/* ========== NAVBAR ========== */
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 60px;
+  display: none;
+  opacity: 0;
+  background-color: white;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+  z-index: 1000;
+}
+
+.navbar.visible {
+  display: flex;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Background layer inside navbar */
+.navbar-bg {
+  position: absolute;
+  inset: 0; /* top:0; right:0; bottom:0; left:0 */
+  border-bottom: 1px solid #ddd;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.05);
+  z-index: 0;
+  opacity: 1;
+  transition: opacity 0.8s ease;
+}
+
+/* Fade background opacity with navbar */
+.navbar:not(.visible) .navbar-bg {
+  opacity: 0;
+}
+
+/* Content inside navbar */
+.navbar-content {
+  position: relative;
+  z-index: 1;
+  height: 60px; /* match navbar height */
+  display: flex;
+  align-items: center;
+}
+
+.navbar .container {
+  max-width: 1000px;
+  margin: auto;
+  padding: 0 2rem;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: #004080;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+}
+
+.nav-links li a {
+  text-decoration: none;
+  font-size: 1rem;
+  color: #333;
+  transition: color 0.3s ease;
+}
+
+.nav-links li a:hover {
+  color: #004080;
+}
+
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+  }
+}
+
+
+/* ========== HEADER / HERO ========== */
+.hero-header {
+  position: relative;
+  min-height: 100vh;
+  background: radial-gradient(circle at top right, #0059b3, #00264d);
+  color: white;
+  text-align: center;
+  padding: 0 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  z-index: 0;
+}
+
+.hero-header::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url('https://www.transparenttextures.com/patterns/cubes.png');
+  opacity: 0.03;
+  z-index: 0;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 800px;
+  margin: auto;
+  animation: slideFadeIn 1.2s ease-out forwards;
+}
+
+.hero-header h1 {
+  font-size: 2.8rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+
+.hero-header p {
+  font-size: 1.25rem;
+  opacity: 0.95;
+  line-height: 1.6;
+  max-width: 600px;
+  margin: auto;
+}
+
+.hero-button {
+  margin-top: 2rem;
+  display: inline-block;
+  background: #ffffff;
+  color: #004080;
+  padding: 0.8rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 1rem;
+  text-decoration: none;
+  transition: background 0.3s ease;
+}
+
+.hero-button:hover {
+  background: #e0ecf8;
+}
+
+@keyframes slideFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ========== ABOUT SECTION ========== */
+.about-content {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin-top: 1rem;
+  flex-direction: row-reverse; /* photo on right */
+}
+
+.ceo-photo {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 30px;
+  box-shadow: 0 6px 15px rgba(0, 64, 128, 0.3);
+  flex-shrink: 0;
+  border: 3px solid #004080;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.ceo-photo:hover {
+  transform: scale(1.05);
+  box-shadow: 0 12px 25px rgba(0, 64, 128, 0.6);
+}
+
+/* ========== SECTIONS ========== */
+section {
+  padding: 3rem 2rem;
+  max-width: 1000px;
+  margin: auto;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+section.reveal {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+h2 {
+  font-size: 2rem;
+  color: #004080;
+  margin-bottom: 1rem;
+}
+
+p {
+  font-size: 1.1rem;
+  line-height: 1.7;
+}
+
+/* ========== MAP ========== */
+.map-container {
+  margin-top: 1.5rem;
+  border: 3px solid #ccc;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+  height: 400px;
+}
+
+iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/* ========== CONTACT FORM STYLES ========== */
+.contact-form {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #004080;
+}
+
+.contact-form input,
+.contact-form textarea {
+  padding: 0.8rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-family: inherit;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border-color: #004080;
+  outline: 2px solid #0059b3;
+  outline-offset: 2px;
+}
+
+.contact-form button {
+  align-self: flex-start;
+  background: #004080;
+  color: white;
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.contact-form button:hover {
+  background: #0059b3;
+}
+
+/* ========== FOOTER ========== */
+footer {
+  background: #00264d;
+  color: white;
+  text-align: center;
+  padding: 1.5rem;
+  font-size: 0.9rem;
+  margin-top: 4rem;
+}
+
+/* ========== RESPONSIVE HEADERS ========== */
+@media (max-width: 768px) {
+  .hero-header h1 {
+    font-size: 2.1rem;
+  }
+
+  .hero-header p {
+    font-size: 1rem;
+  }
+
+  section {
+    padding: 2rem 1rem;
+  }
+
+  /* Stack About section content vertically on mobile */
+  .about-content {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .ceo-photo {
+    width: 150px;
+    height: 150px;
+    margin-bottom: 1rem;
+    border-radius: 30px;
+  }
+}
