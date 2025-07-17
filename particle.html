@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Particle Test</title>
+<style>
+  #tsparticles {
+    position: fixed;
+    top:0; left:0;
+    width:100%; height:100%;
+    z-index: -1;
+    pointer-events: none;
+    background: transparent;
+  }
+  body {
+    margin:0; height:100vh; overflow:hidden;
+    background: #f0f8ff;
+    font-family: Arial, sans-serif;
+  }
+  h1 {
+    position: relative;
+    color: #004080;
+    text-align: center;
+    padding-top: 40vh;
+    font-weight: 700;
+  }
+</style>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles@2.11.1/tsparticles.bundle.min.js" defer></script>
+<script>
+  window.onload = () => {
+    tsParticles.load("tsparticles", {
+      fpsLimit: 30,
+      background: { color: "transparent" },
+      particles: {
+        number: { value: 80, density: { enable: true, area: 900 } },
+        color: { value: "#0077cc" },
+        shape: { type: "circle" },
+        opacity: {
+          value: 0.3,
+          random: true,
+          anim: { enable: true, speed: 1, opacity_min: 0.1, sync: false }
+        },
+        size: {
+          value: 4,
+          random: true,
+          anim: { enable: true, speed: 2, size_min: 2, sync: false }
+        },
+        move: {
+          enable: true,
+          speed: 0.7,
+          direction: "none",
+          random: true,
+          straight: false,
+          out_mode: "bounce",
+          bounce: true
+        }
+      },
+      detectRetina: true
+    });
+  };
+</script>
+</head>
+<body>
+  <div id="tsparticles"></div>
+  <h1>Particles should be visible now!</h1>
+</body>
+</html>
