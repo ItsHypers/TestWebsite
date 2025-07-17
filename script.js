@@ -30,6 +30,12 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 const navbar = document.querySelector('.navbar');
 
 function checkNavbar() {
+  if (window.innerWidth <= 768) {
+    // Always hide navbar on small screens
+    navbar.classList.remove('visible');
+    navbar.style.display = 'none';
+    return;
+  }
   const scrollY = window.scrollY;
 
   if (scrollY > 50) {
