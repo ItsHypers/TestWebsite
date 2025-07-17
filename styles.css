@@ -16,7 +16,7 @@ body {
 }
 
 @media (max-width: 768px) {
-  section h2 {
+  section {
     text-align: center;
   }
 }
