@@ -129,7 +129,11 @@ body::after {
     display: none;
   }
 }
-
+@media (max-width: 768px) {
+  .navbar {
+    display: none !important;
+  }
+}
 
 /* ========== HEADER / HERO ========== */
 .hero-header {

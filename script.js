@@ -27,31 +27,29 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   });
 });
 
-// Navbar fade in/out on scroll
 const navbar = document.querySelector('.navbar');
-let lastScrollY = window.scrollY;
 
 function checkNavbar() {
-  const currentScrollY = window.scrollY;
+  const scrollY = window.scrollY;
 
-  if (currentScrollY > 50 && currentScrollY > lastScrollY) {
+  if (scrollY > 50) {
+    // Show navbar if scrolled past 50px
     if (!navbar.classList.contains('visible')) {
       navbar.style.display = 'flex';
-      void navbar.offsetWidth;
+      void navbar.offsetWidth; // reflow to enable transition
       navbar.classList.add('visible');
     }
   } else {
+    // Hide navbar only when near the top (inside hero)
     if (navbar.classList.contains('visible')) {
       navbar.classList.remove('visible');
       setTimeout(() => {
         if (!navbar.classList.contains('visible')) {
           navbar.style.display = 'none';
         }
-      }, 400);
+      }, 400); // match fade-out duration
     }
   }
-
-  lastScrollY = currentScrollY;
 }
 
 window.addEventListener('scroll', checkNavbar);
