@@ -5,23 +5,37 @@
   box-sizing: border-box;
 }
 
+/* Make body stacking context for z-index layering */
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background: #f4f7fa;
   color: #222;
   overflow-x: hidden;
   position: relative;
-  z-index: 0;
+  z-index: 0; /* stacking context root */
 }
 
-/* ========== ABSTRACT BACKGROUND ========== */
+/* ========== PARTICLES BACKGROUND ========== */
+#tsparticles {
+  position: absolute;  /* scrolls with content */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  min-height: 100vh;
+  z-index: -1;  /* behind content */
+  pointer-events: none;
+  background: transparent;
+}
+
+/* ========== ABSTRACT BACKGROUND BIG BLUE CIRCLES ========== */
 body::before, body::after {
   content: '';
   position: fixed;
   width: 300px;
   height: 300px;
   border-radius: 50%;
-  z-index: -1;
+  z-index: -1; /* just behind body content */
   background: linear-gradient(135deg, #004080aa, #3399ff99);
   animation: float 20s infinite alternate ease-in-out;
 }
@@ -35,6 +49,13 @@ body::after {
   bottom: -100px;
   right: -150px;
   background: linear-gradient(135deg, #3399ffaa, #00408099);
+}
+
+/* Hero and footer stack above circles */
+.hero-header,
+footer {
+  position: relative; /* establish stacking context */
+  z-index: 1;
 }
 
 @keyframes float {
@@ -52,24 +73,25 @@ body::after {
   top: 0;
   width: 100%;
   height: 60px;
-  display: none;
+  z-index: 1000;
   opacity: 0;
   background-color: white;
   transition: opacity 0.4s ease;
   pointer-events: none;
-  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2rem;
 }
 
 .navbar.visible {
-  display: flex;
   opacity: 1;
   pointer-events: auto;
 }
 
-/* Background layer inside navbar */
 .navbar-bg {
   position: absolute;
-  inset: 0; /* top:0; right:0; bottom:0; left:0 */
+  inset: 0;
   border-bottom: 1px solid #ddd;
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.05);
   z-index: 0;
@@ -77,27 +99,19 @@ body::after {
   transition: opacity 0.8s ease;
 }
 
-/* Fade background opacity with navbar */
 .navbar:not(.visible) .navbar-bg {
   opacity: 0;
 }
 
-/* Content inside navbar */
 .navbar-content {
   position: relative;
   z-index: 1;
-  height: 60px; /* match navbar height */
-  display: flex;
-  align-items: center;
-}
-
-.navbar .container {
-  max-width: 1000px;
-  margin: auto;
-  padding: 0 2rem;
-  width: 100%;
+  height: 60px;
   display: flex;
   justify-content: space-between;
+  width: 100%;
+  max-width: 1000px;
+  margin: auto;
   align-items: center;
 }
 
@@ -127,11 +141,6 @@ body::after {
 @media (max-width: 768px) {
   .nav-links {
     display: none;
-  }
-}
-@media (max-width: 768px) {
-  .navbar {
-    display: none !important;
   }
 }
 
@@ -215,7 +224,7 @@ body::after {
   align-items: center;
   gap: 2rem;
   margin-top: 1rem;
-  flex-direction: row-reverse; /* photo on right */
+  flex-direction: row-reverse;
 }
 
 .ceo-photo {
@@ -336,6 +345,8 @@ footer {
   padding: 1.5rem;
   font-size: 0.9rem;
   margin-top: 4rem;
+  position: relative;
+  z-index: 1;
 }
 
 /* ========== RESPONSIVE HEADERS ========== */

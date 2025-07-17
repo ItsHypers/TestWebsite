@@ -16,49 +16,95 @@ sections.forEach(section => {
   observer.observe(section);
 });
 
-// Smooth scroll for anchor links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   anchor.addEventListener('click', function (e) {
     const target = document.querySelector(this.getAttribute('href'));
     if (target) {
       e.preventDefault();
-      target.scrollIntoView({ behavior: 'smooth' });
+      
+      const offset = 80; // adjust this value to scroll higher (pixels)
+      const elementPosition = target.getBoundingClientRect().top;
+      const offsetPosition = window.pageYOffset + elementPosition - offset;
+      
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
     }
   });
 });
 
+// Navbar display and fade-in on scroll only after hero
 const navbar = document.querySelector('.navbar');
+const heroSection = document.querySelector('.hero-header');
 
 function checkNavbar() {
-  if (window.innerWidth <= 768) {
-    // Always hide navbar on small screens
-    navbar.classList.remove('visible');
-    navbar.style.display = 'none';
-    return;
-  }
-  const scrollY = window.scrollY;
+  const heroBottom = heroSection.getBoundingClientRect().bottom;
 
-  if (scrollY > 50) {
-    // Show navbar if scrolled past 50px
+  if (heroBottom <= 0) {
     if (!navbar.classList.contains('visible')) {
-      navbar.style.display = 'flex';
-      void navbar.offsetWidth; // reflow to enable transition
       navbar.classList.add('visible');
     }
   } else {
-    // Hide navbar only when near the top (inside hero)
     if (navbar.classList.contains('visible')) {
       navbar.classList.remove('visible');
-      setTimeout(() => {
-        if (!navbar.classList.contains('visible')) {
-          navbar.style.display = 'none';
-        }
-      }, 400); // match fade-out duration
     }
   }
 }
 
 window.addEventListener('scroll', checkNavbar);
-window.addEventListener('load', () => {
-  navbar.style.display = 'none';
+window.addEventListener('load', checkNavbar);
+
+// Particles config
+tsParticles.load("tsparticles", {
+  fpsLimit: 30,
+  particles: {
+    number: {
+      value: 40,
+      density: {
+        enable: true,
+        area: 800,
+      }
+    },
+    color: {
+      value: "#004080"
+    },
+    shape: {
+      type: "circle"
+    },
+    opacity: {
+      value: 0.05,
+      random: true,
+      anim: {
+        enable: true,
+        speed: 0.2,       // slower flicker/fade
+        opacity_min: 0.05,
+        sync: false
+      }
+    },
+    size: {
+      value: 6,          // bigger particles
+      random: true,
+      anim: {
+        enable: false,
+      }
+    },
+    move: {
+      enable: true,
+      speed: 0.2,        // slow drifting movement
+      direction: "none",
+      random: true,
+      straight: false,
+      outModes: {
+        default: "out"
+      }
+    },
+    links: {
+      enable: false
+    }
+  },
+  detectRetina: true,
+  background: {
+    color: "transparent"
+  }
 });
